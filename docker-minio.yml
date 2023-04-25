@@ -1,0 +1,27 @@
+version: '3'
+services:
+  s3:
+    image: quay.io/minio/minio:latest
+    command:
+    - server
+    - /data
+    - --console-address
+    - :9001
+    environment:
+      MINIO_ROOT_USER: admin
+      MINIO_ROOT_PASSWORD: minio_supersecret
+      # MINIO_ACCESS_KEY: minio_access_key
+      # MINIO_SECRET_KEY: minio_secret_key
+    ports:
+    - '9000:9000'
+    - '9001:9001'
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+    volumes:
+    - s3-data:/data
+
+volumes:
+  s3-data: {}

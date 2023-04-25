@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "oz-info-bot"
+version = "0.1.0"
+description = ""
+authors = ["Valentin Nagornyy <vp.burchenya@gmail.com>"]
+readme = "README.md"
+packages = [{include = "oz_info_bot"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+aiogram = {version = ">=3.0-beta", allow-prereleases = true}
+aiobotocore = "^2.5.0"
+
+[tool.poetry.group.dev.dependencies]
+types-aiobotocore-s3 = "^2.5.0.post1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
